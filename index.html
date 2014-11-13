@@ -66,51 +66,190 @@
 						<p>with puppetmaster: /etc/puppet/manifests</p>
 						<p>with puppet apply: Anywhere!</p>
 					</section>
+					<section>
+						<h3>Module Path</h3>
+						<p>/etc/puppet/modules:/usr/share/puppet/modules</p>
+						<p>Multiple directories separated by colon</p>
+					</section>
+					<section>
+						<h3>VARdir</h3>
+						<p>Follows distro convention, usually /var/lib/puppet</p>
+					</section>
+					<section>
+						<h3>SSLDir</h3>
+						<p>VARdir or CONFdir, depending on distro</p>
+						<p>puppet config print ssldir</p>
+					</section>
 				</section>
 				<section>
-					<h1>Standalone vs. puppetmaster</h1>
+					<section>
+						<h1>Standalone vs. puppetmaster</h1>
+					</section>
+					<section>
+						<h3>Standalone</h3>
+						<ul>
+							<li>No puppetmaster</li>
+							<li>Nodes configured with 'puppet apply'</li>
+							<li>cron or scheduled task</li>
+							<li><b>Why</b> would you do such a thing?</li>
+						</ul>
+					</section>
+					<section>
+						<h3>Puppetmaster</h3>
+						<ul>
+							<li>Central config location</li>
+							<li>Reporting</li>
+							<li>Flexibility</li>
+						</ul>
+					</section>
+					<section>
+						<h3>Sidebar: Webrick is not for production</h3>
+						<ul>
+							<li>Lack production-quality features</li>
+							<li>pre-forking, life cycle management, asynchronous handling</li>
+						</ul>
+						<h3>Production: Passenger (a.k.a mod_rails or mod_rack)</h3>
+					</section>
 				</section>
 				<section>
-					<h1>Connecting Agents & Signing Certificates</h1>
+					<section>
+						<h1>Connecting Agents & Signing Certificates</h1>
+					</section>
+					<section>
+						<p>Cert not found and wait for cert disabled</p>
+						<ul>
+							<li>communication between agent and puppetmaster must be signed</li>
+							<li>sudo puppet cert list</li>
+							<li>sudo puppet cert sign [certid]</li>
+							<li>yes, but don't</li>
+							<li>OK, fine: <a href="http://docs.puppetlabs.com/puppet/latest/reference/ssl_autosign.html">
+								http://docs.puppetlabs.com/puppet/latest/reference/ssl_autosign.html</a></li>
+						</ul>
+					</section>
 				</section>
 				<section>
-					<h1>To Service or to Cron</h1>
-					<h2>...that is the question</h2>
+					<section>
+						<h1>To Service or to Cron</h1>
+						<h2>...that is the question</h2>
+					</section>
+					<section>
+						<ul>
+							<li>Runs every 30 minutes by default</li>
+							<li>Module to ensure puppet is running</li>
+							<li>but what if...</li>
+						</ul>
+					</section>
+					<section>
+						<ul>
+							<li>batch processing server that runs nightly</li>
+							<li>server with other controls that would be duplicated</li>
+							<li>state changes intervals are measured in days</li>
+							<li>puppet runs take over 30 minutes</li>
+						</ul>
+					</section>
 				</section>
 				<section>
 					<h1>Anatomy of a Manifest</h1>
 				</section>
 				<section>
-					<h1>Manifests vs. Modules</h1>
-				</section>
-				<section>
-					<h1>Applying Modules</h1>
+					<section>
+						<h1>Manifests vs. Modules</h1>
+					</section>
+					<section>
+						<p>Manifest: self-contained</p>
+						<p>Module: "package" approach, portable, scalable</p>
+					</section>
 				</section>
 				<section>
 					<h1>The PuppetForge</h1>
+					<p>Repository of modules written by the community</p>
+					<p><b>ALWAYS</b> check the `Forge</p>
 				</section>
 				<section>
-					<h1>Logging, Troubleshooting and Getting HELP!</h1>
+					<section>
+						<h1>Logging, Troubleshooting and Getting HELP!</h1>
+					</section>
+					<section>
+						<uL>
+							<li>puppetmaster logs</li>
+							<li>system logs</li>
+							<li>puppet apply -t</li>
+							<li>notify { $my_variable: }</li>
+							<li>irc #puppet</li>
+							<li>@wfbutton :)</li>
+						</uL>
+					</section>
 				</section>
 				<section>
-					<h1>Organizing Your Environment Using Hiera</h1>
+					<section>
+						<h1>Organizing Your Environment Using Hiera</h1>
+						<ul>
+							<li>A key/value lookup tool for configuration data</li>
+							<li>Included in puppet v3.0+ (yeah!)</li>
+							<li>Keep site-specific data out of your manifests</li>
+							<li>(think: prod passwords vs. dev passwords</li>
+							<li><b>Hiera</b>rchical, meaning defaults can be overridden</li>
+						</ul>
+					</section>
+					<section>
+						<h3>hiera.yaml</h3>
+						<ul>
+							<li>confdir/hiera.yaml</li>
+							<li>specifies hiera config</li>
+							<li>assigns classes to nodes based on config</li>
+							<li>best explained by looking at the file</li>
+						</ul>
+					</section>
 				</section>
 				<section>
 					<h1>Using Hiera To Store Config Data</h1>
-				</section>
-				<section>
-					<h1>Separating Test From Production</h1>
+					<ul>
+						<li>proxies</li>
+						<li>DNS servers</li>
+						<li>passwords</li>
+						<li>test vs. production settings</li>
+					</ul>
 				</section>
 				<section>
 					<h1>Using git For Your Modules</h1>
+					<ul>
+						<li>git-stuff: version control, view changes, multiple authors</li>
+						<li>DR: backup copy of environment config</li>
+						<li>ease of deployment</li>
+					</ul>
 				</section>
 				<section>
-					<h1>Autodeploy With git</h1>
+					<section>
+						<h1>Autodeploy With git</h1>
+						<p>Combine with your CI server for automated deployments</p>
+					</section>
+					<section>
+						<p>Screenshot of TravisCI</p>
+					</section>
 				</section>
 				<section>
-					<h1>Use The Foreman, Luke!</h1>
+					<section>
+						<h1>Use The Foreman, Luke!</h1>
+						<ul>
+							<li>vs. puppetdb & dashboard</li>
+							<li>Open Source</li>
+							<li>Provisioning</li>
+							<li>Configuration & ENC</li>
+							<li>Monitoring</li>
+							<li>Web, CLI, RESTful API</li>
+							<li>irc: #foreman</li>
+						</ul>
+					</section>
+					<section>
+						<p>Screenshot of Foreman</p>
+					</section>
 				</section>
-
+				<section>
+					<h2>Stump The Chump!</h2>
+					<h4>a.k.a. "Questions and Answers"</h4>
+					<p><a href="http://willbutton.co/puppet">http://willbutton.co/puppet</a></p>
+					<p><a href="http://twitter.com/wfbutton">@wfbutton</a></p>
+				</section>
 			</div>
 
 		</div>
