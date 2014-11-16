@@ -48,10 +48,12 @@
 					<p>
 						<small>Created by <a href="http://willbutton.co">Will Button</a> / <a href="http://twitter.com/wfbutton">@wfbutton</a></small>
 					</p>
+					<img src="img/sock_puppet.jpg" alt="funny picture of puppet" />
 				</section>
 				<section>
 					<section>
 						<h2>Where's my stuff?</h2>
+						<img src="img/Looking.png" alt="another funny image" />
 					</section>
 					<section>
 						<h3>/etc/puppet</h3>
@@ -84,6 +86,7 @@
 				<section>
 					<section>
 						<h2>Standalone vs. puppetmaster</h2>
+						<img src="img/only_one.jpg" alt="even more funny pictures" />
 					</section>
 					<section>
 						<h3>Standalone</h3>
@@ -107,8 +110,10 @@
 						<ul>
 							<li>Lack production-quality features</li>
 							<li>pre-forking, life cycle management, asynchronous handling</li>
+							<li>Production: Passenger (a.k.a mod_rails or mod_rack)</li>
+							<li><a href="https://docs.puppetlabs.com/guides/passenger.html">
+								https://docs.puppetlabs.com/guides/passenger.html</a></li>
 						</ul>
-						<h3>Production: Passenger (a.k.a mod_rails or mod_rack)</h3>
 					</section>
 				</section>
 				<section>
@@ -129,8 +134,11 @@
 				</section>
 				<section>
 					<section>
-						<h2>To Service or to Cron</h2>
-						<h2>...that is the question</h2>
+						<div align="left">
+							<h2>To Service or to Cron</h2>
+							<h2>...that is the question</h2>
+						</div>
+							<img align="right" src="img/shakespeare.jpg" width="33%" height="33%" alt="whoa. moar funny pics" />
 					</section>
 					<section>
 						<ul>
@@ -138,6 +146,7 @@
 							<li>Module to ensure puppet is running</li>
 							<li>but what if...</li>
 						</ul>
+						<img src="img/rabbit.gif" alt="witty picture" />
 					</section>
 					<section>
 						<ul>
@@ -148,12 +157,13 @@
 						</ul>
 					</section>
 				</section>
-				<section>
+				<section data-background="img/anatomy.jpg">
 					<h2>Anatomy of a Manifest</h2>
 				</section>
 				<section>
 					<section>
 						<h2>Manifests vs. Modules</h2>
+						<img src="img/vs.jpg" alt="again, with the witty images" />
 					</section>
 					<section>
 						<p>Manifest: self-contained</p>
@@ -164,10 +174,12 @@
 					<h2>The PuppetForge</h2>
 					<p>Repository of modules written by the community</p>
 					<p><b>ALWAYS</b> check the `Forge</p>
+					<img src="img/forge-logo.png" alt="not so witty image" />
 				</section>
 				<section>
 					<section>
 						<h2>Logging, Troubleshooting and Getting HELP!</h2>
+						<img src="img/calvin.jpeg" alt="back with the witty images" />
 					</section>
 					<section>
 						<uL>
@@ -200,6 +212,10 @@
 							<li>best explained by looking at the file</li>
 						</ul>
 					</section>
+					<section>
+						<p>/etc/puppet/manifests/site.pp</p>
+						<pre><code>include ('hiera_classes')</code></pre>
+					</section>
 				</section>
 				<section>
 					<h2>Using Hiera To Store Config Data</h2>
@@ -210,6 +226,7 @@
 						<li>test vs. production settings</li>
 						<li>:datadir: -- where is your node config?</li>
 					</ul>
+					<pre><code>hiera resolvconf::nameserver</code></pre>
 				</section>
 				<section>
 					<h2>Using git For Your Modules</h2>
@@ -226,11 +243,13 @@
 						<p>Use post-commit hooks</p>
 					</section>
 					<section>
-						<p>Screenshot of Jenkins</p>
+						<img src="img/jenkins.png" alt="Oh. A non-witty image"/>
+						<pre><code>ssh -i /home/jenkins/.ssh/id_rsa deploy@mypuppetserver 'cd /etc/puppet; sudo git pull origin master'</code></pre>
 					</section>
 				</section>
 				<section>
 					<section>
+						<img src="img/luke.png" alt="Foreman logo"/>
 						<h2>Use The Foreman, Luke!</h2>
 						<ul>
 							<li>vs. puppetdb & dashboard</li>
@@ -243,7 +262,7 @@
 						</ul>
 					</section>
 					<section>
-						<p>Screenshot of Foreman</p>
+						<img src="img/foreman.png" alt="A not very funny Foreman screenshot" />
 					</section>
 				</section>
 				<section>
